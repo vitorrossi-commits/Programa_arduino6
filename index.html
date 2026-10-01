@@ -15,12 +15,7 @@
     <!-- MQTT Paho -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
 
-
     <style>
-
-        /* =====================================================
-           CONFIGURAÇÃO GERAL
-        ====================================================== */
 
         * {
             margin: 0;
@@ -28,15 +23,12 @@
             box-sizing: border-box;
         }
 
-
         html {
             width: 100%;
             min-height: 100%;
         }
 
-
         body {
-
             width: 100%;
             min-height: 100vh;
 
@@ -54,25 +46,19 @@
             color: #1e293b;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             padding: 16px;
-
         }
 
-
-        /* =====================================================
-           CONTAINER PRINCIPAL
-        ====================================================== */
+        /* =========================
+           DASHBOARD
+        ========================= */
 
         .dashboard {
-
             width: 100%;
-
-            max-width: 760px;
+            max-width: 900px;
 
             background: #ffffff;
 
@@ -83,16 +69,13 @@
                 rgba(0, 0, 0, 0.30);
 
             overflow: hidden;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            CABEÇALHO
-        ====================================================== */
+        ========================= */
 
         .header {
-
             padding: 24px 28px;
 
             background: #2563eb;
@@ -100,46 +83,32 @@
             color: white;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             gap: 18px;
-
         }
-
 
         .header h1 {
-
             font-size: 21px;
-
             font-weight: 700;
-
         }
 
-
         .header p {
-
             margin-top: 5px;
 
             font-size: 13px;
 
             opacity: 0.9;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            STATUS
-        ====================================================== */
+        ========================= */
 
         .status {
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             gap: 8px;
@@ -151,18 +120,13 @@
             border-radius: 20px;
 
             font-size: 12px;
-
             font-weight: 600;
 
             white-space: nowrap;
-
         }
 
-
         .status-dot {
-
             width: 9px;
-
             height: 9px;
 
             border-radius: 50%;
@@ -170,56 +134,41 @@
             background: #facc15;
 
             flex-shrink: 0;
-
         }
 
-
         .status-online .status-dot {
-
             background: #22c55e;
 
             box-shadow:
                 0 0 0 4px
                 rgba(34, 197, 94, 0.15);
-
         }
 
-
         .status-offline .status-dot {
-
             background: #ef4444;
 
             box-shadow:
                 0 0 0 4px
                 rgba(239, 68, 68, 0.15);
-
         }
 
-
-        /* =====================================================
+        /* =========================
            CONTEÚDO
-        ====================================================== */
+        ========================= */
 
         .content {
-
             padding: 28px;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            TÓPICO MQTT
-        ====================================================== */
+        ========================= */
 
         .topic-section {
-
             margin-bottom: 24px;
-
         }
 
-
         .topic-label {
-
             display: block;
 
             margin-bottom: 8px;
@@ -227,14 +176,10 @@
             color: #475569;
 
             font-size: 12px;
-
             font-weight: 700;
-
         }
 
-
         .topic-input {
-
             width: 100%;
 
             min-height: 48px;
@@ -254,107 +199,84 @@
             font-size: 14px;
 
             outline: none;
-
-            -webkit-appearance: none;
-
         }
-
 
         .topic-input::placeholder {
-
             color: #94a3b8;
-
         }
 
-
         .topic-input:focus {
-
             border-color: #3b82f6;
 
             box-shadow:
                 0 0 0 3px
                 rgba(59, 130, 246, 0.10);
-
         }
 
+        /* =========================
+           LEDS
+        ========================= */
 
-        /* =====================================================
-           ÁREA PRINCIPAL
-        ====================================================== */
-
-        .main-area {
-
+        .leds-container {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                repeat(3, 1fr);
 
-            gap: 20px;
+            gap: 16px;
 
+            margin-bottom: 20px;
         }
 
-
-        /* =====================================================
-           PAINEL DO DISPOSITIVO
-        ====================================================== */
-
-        .device-panel {
-
+        .led-card {
             background: #f8fafc;
 
             border: 1px solid #e2e8f0;
 
             border-radius: 14px;
 
-            padding: 28px;
+            padding: 20px;
 
             text-align: center;
-
         }
 
-
-        .device-title {
-
-            color: #64748b;
-
-            font-size: 12px;
+        .led-title {
+            font-size: 15px;
 
             font-weight: 700;
 
-            text-transform: uppercase;
+            color: #334155;
 
-            margin-bottom: 16px;
-
+            margin-bottom: 4px;
         }
 
+        .led-pin {
+            font-size: 11px;
 
-        /* =====================================================
-           LED
-        ====================================================== */
+            color: #94a3b8;
+
+            margin-bottom: 15px;
+        }
 
         .led-area {
+            height: 135px;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            height: 190px;
-
         }
 
-
         .led {
-
-            width: 125px;
-
-            height: 125px;
+            width: 90px;
+            height: 90px;
 
             border-radius: 50%;
 
             background: #cbd5e1;
 
-            border: 8px solid #e2e8f0;
+            border: 7px solid #e2e8f0;
 
             box-shadow:
                 inset 0 4px 10px
@@ -366,123 +288,69 @@
 
             justify-content: center;
 
-            padding: 20px;
-
             transition: 0.3s ease;
-
         }
 
-
         .led-text {
-
             color: #64748b;
 
-            font-size: 11px;
+            font-size: 10px;
 
             font-weight: 700;
 
             text-transform: uppercase;
-
         }
 
-
-        /* =====================================================
-           LED LIGADO
-        ====================================================== */
-
         .led.active {
-
             background: #38bdf8;
 
             border-color: #bae6fd;
 
             box-shadow:
 
-                0 0 0 8px
+                0 0 0 7px
                 rgba(56, 189, 248, 0.12),
 
-                0 0 30px
-                rgba(14, 165, 233, 0.55);
+                0 0 28px
+                rgba(14, 165, 233, 0.60);
 
-            transform: scale(1.04);
-
+            transform: scale(1.05);
         }
-
 
         .led.active .led-text {
-
             color: white;
-
         }
 
+        /* =========================
+           CONTROLES INDIVIDUAIS
+        ========================= */
 
-        /* =====================================================
-           PAINEL DE CONTROLE
-        ====================================================== */
-
-        .control-panel {
-
-            border: 1px solid #e2e8f0;
-
-            border-radius: 14px;
-
-            padding: 28px;
-
-        }
-
-
-        .control-panel h2 {
-
-            color: #1e3a8a;
-
-            font-size: 18px;
-
-            margin-bottom: 6px;
-
-        }
-
-
-        .control-description {
-
-            color: #64748b;
-
-            font-size: 12px;
-
-            line-height: 1.5;
-
-            margin-bottom: 22px;
-
-        }
-
-
-        /* =====================================================
-           BOTÕES
-        ====================================================== */
-
-        .buttons {
-
+        .led-buttons {
             display: grid;
 
-            gap: 12px;
+            grid-template-columns: 1fr 1fr;
 
+            gap: 8px;
         }
 
+        /* =========================
+           BOTÕES
+        ========================= */
 
         button {
-
             width: 100%;
 
-            min-height: 50px;
+            min-height: 46px;
 
             border: none;
 
-            border-radius: 10px;
+            border-radius: 9px;
 
-            padding: 14px;
+            padding: 12px;
 
             color: white;
 
-            font-size: 14px;
+            font-size: 13px;
 
             font-weight: 700;
 
@@ -491,46 +359,79 @@
             transition: 0.2s ease;
 
             -webkit-tap-highlight-color: transparent;
-
         }
 
-
         button:disabled {
-
             opacity: 0.45;
 
             cursor: not-allowed;
-
         }
-
 
         button:not(:disabled):active {
-
             transform: scale(0.97);
-
         }
-
 
         .btn-on {
-
             background: #16a34a;
-
         }
-
 
         .btn-off {
-
             background: #dc2626;
-
         }
 
+        /* =========================
+           CONTROLE DE TODOS
+        ========================= */
 
-        /* =====================================================
+        .all-control {
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            margin-top: 20px;
+        }
+
+        .all-control h2 {
+            color: #1e3a8a;
+
+            font-size: 18px;
+
+            margin-bottom: 6px;
+        }
+
+        .control-description {
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            margin-bottom: 18px;
+        }
+
+        .all-buttons {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+        }
+
+        .all-buttons button {
+            min-height: 52px;
+
+            font-size: 14px;
+        }
+
+        /* =========================
            MENSAGEM
-        ====================================================== */
+        ========================= */
 
         .message {
-
             margin-top: 15px;
 
             padding: 12px;
@@ -550,16 +451,13 @@
             font-weight: 600;
 
             word-break: break-word;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            INFORMAÇÕES
-        ====================================================== */
+        ========================= */
 
         .information {
-
             margin-top: 20px;
 
             display: grid;
@@ -568,12 +466,9 @@
                 repeat(3, 1fr);
 
             gap: 10px;
-
         }
 
-
         .info {
-
             background: #f8fafc;
 
             border: 1px solid #e2e8f0;
@@ -581,12 +476,9 @@
             border-radius: 10px;
 
             padding: 13px;
-
         }
 
-
         .info-title {
-
             color: #94a3b8;
 
             font-size: 10px;
@@ -594,12 +486,9 @@
             font-weight: 700;
 
             text-transform: uppercase;
-
         }
 
-
         .info-value {
-
             margin-top: 5px;
 
             color: #334155;
@@ -613,16 +502,13 @@
             text-overflow: ellipsis;
 
             white-space: nowrap;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            RODAPÉ
-        ====================================================== */
+        ========================= */
 
         .footer {
-
             margin-top: 20px;
 
             text-align: center;
@@ -630,38 +516,27 @@
             color: #94a3b8;
 
             font-size: 10px;
-
         }
 
-
-        /* =====================================================
+        /* =========================
            TABLET
-        ====================================================== */
+        ========================= */
 
-        @media (max-width: 650px) {
+        @media (max-width: 700px) {
 
             body {
-
                 align-items: flex-start;
 
                 padding: 12px;
-
             }
-
 
             .dashboard {
-
                 max-width: 100%;
 
-                border-radius: 14px;
-
                 margin: auto 0;
-
             }
 
-
             .header {
-
                 padding: 20px;
 
                 flex-direction: column;
@@ -669,261 +544,98 @@
                 align-items: stretch;
 
                 text-align: center;
-
             }
-
-
-            .header h1 {
-
-                font-size: 20px;
-
-            }
-
-
-            .header p {
-
-                font-size: 12px;
-
-            }
-
 
             .status {
-
                 width: 100%;
-
             }
-
 
             .content {
-
                 padding: 20px;
-
             }
 
-
-            .main-area {
-
+            .leds-container {
                 grid-template-columns: 1fr;
-
-                gap: 16px;
-
             }
 
-
-            .device-panel {
-
-                padding: 22px;
-
+            .led-card {
+                padding: 20px;
             }
-
-
-            .control-panel {
-
-                padding: 22px;
-
-            }
-
 
             .information {
-
                 grid-template-columns: 1fr 1fr;
-
             }
-
 
             .information .info:last-child {
-
                 grid-column: 1 / -1;
-
             }
-
         }
 
-
-        /* =====================================================
+        /* =========================
            CELULAR
-        ====================================================== */
+        ========================= */
 
         @media (max-width: 480px) {
 
             body {
-
                 padding: 8px;
-
             }
-
-
-            .dashboard {
-
-                border-radius: 12px;
-
-            }
-
 
             .header {
-
                 padding: 18px;
-
             }
-
 
             .header h1 {
-
                 font-size: 18px;
-
             }
-
 
             .content {
-
                 padding: 16px;
-
             }
-
-
-            .topic-section {
-
-                margin-bottom: 18px;
-
-            }
-
 
             .topic-input {
-
                 min-height: 50px;
 
                 font-size: 14px;
-
             }
 
-
-            .device-panel {
-
-                padding: 20px 16px;
-
+            .led-card {
+                padding: 18px 14px;
             }
-
-
-            .control-panel {
-
-                padding: 20px 16px;
-
-            }
-
-
-            .led-area {
-
-                height: 165px;
-
-            }
-
 
             .led {
-
-                width: 115px;
-
-                height: 115px;
-
+                width: 85px;
+                height: 85px;
             }
-
-
-            .control-panel h2 {
-
-                font-size: 17px;
-
-            }
-
-
-            .control-description {
-
-                font-size: 12px;
-
-            }
-
 
             button {
+                min-height: 50px;
 
-                min-height: 54px;
-
-                font-size: 14px;
-
+                font-size: 13px;
             }
 
+            .all-buttons {
+                grid-template-columns: 1fr;
+            }
 
             .information {
-
                 grid-template-columns: 1fr;
-
             }
-
 
             .information .info:last-child {
-
                 grid-column: auto;
-
             }
-
-
-            .info {
-
-                padding: 12px;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           CELULARES MUITO PEQUENOS
-        ====================================================== */
-
-        @media (max-width: 350px) {
-
-            .header h1 {
-
-                font-size: 17px;
-
-            }
-
-
-            .content {
-
-                padding: 13px;
-
-            }
-
-
-            .led {
-
-                width: 100px;
-
-                height: 100px;
-
-            }
-
-
-            .led-area {
-
-                height: 145px;
-
-            }
-
         }
 
     </style>
 
 </head>
 
-
 <body>
-
 
     <main class="dashboard">
 
-
-        <!-- =================================================
-             CABEÇALHO
-        ================================================== -->
+        <!-- CABEÇALHO -->
 
         <header class="header">
 
@@ -934,11 +646,10 @@
                 </h1>
 
                 <p>
-                    Controle da porta 13 do Arduino
+                    Controle de 3 LEDs do Arduino
                 </p>
 
             </div>
-
 
             <div
                 id="status"
@@ -958,10 +669,7 @@
 
         <section class="content">
 
-
-            <!-- =================================================
-                 TÓPICO MQTT
-            ================================================== -->
+            <!-- TÓPICO -->
 
             <div class="topic-section">
 
@@ -969,11 +677,8 @@
                     class="topic-label"
                     for="topicInput"
                 >
-
                     Tópico MQTT
-
                 </label>
-
 
                 <input
                     id="topicInput"
@@ -987,124 +692,219 @@
             </div>
 
 
-            <!-- =================================================
-                 ÁREA PRINCIPAL
-            ================================================== -->
+            <!-- LEDs -->
 
-            <div class="main-area">
+            <div class="leds-container">
 
+                <!-- LED 1 -->
 
-                <!-- =================================================
-                     DISPOSITIVO
-                ================================================== -->
+                <section class="led-card">
 
-                <section class="device-panel">
-
-
-                    <div class="device-title">
-
-                        Estado da porta 13
-
+                    <div class="led-title">
+                        LED 1
                     </div>
 
+                    <div class="led-pin">
+                        Arduino - D11
+                    </div>
 
                     <div class="led-area">
 
-
                         <div
-                            id="led"
+                            id="led1"
                             class="led"
                         >
 
                             <span
-                                id="ledText"
+                                id="ledText1"
                                 class="led-text"
                             >
-
                                 Desligado
-
                             </span>
 
                         </div>
 
-
                     </div>
 
-
-                </section>
-
-
-                <!-- =================================================
-                     CONTROLE
-                ================================================== -->
-
-                <section class="control-panel">
-
-
-                    <h2>
-                        Controle
-                    </h2>
-
-
-                    <p class="control-description">
-
-                        Envie um comando para o Arduino
-                        através do protocolo MQTT.
-
-                    </p>
-
-
-                    <div class="buttons">
-
+                    <div class="led-buttons">
 
                         <button
-                            id="btnOn"
+                            id="btnLed1On"
                             class="btn-on"
                             disabled
                         >
-
                             LIGAR
-
                         </button>
 
-
                         <button
-                            id="btnOff"
+                            id="btnLed1Off"
                             class="btn-off"
                             disabled
                         >
-
                             DESLIGAR
-
                         </button>
 
-
                     </div>
-
-
-                    <div class="message">
-
-                        Última mensagem:
-
-                        <span id="lastMessage">
-                            Aguardando
-                        </span>
-
-                    </div>
-
 
                 </section>
 
+
+                <!-- LED 2 -->
+
+                <section class="led-card">
+
+                    <div class="led-title">
+                        LED 2
+                    </div>
+
+                    <div class="led-pin">
+                        Arduino - D12
+                    </div>
+
+                    <div class="led-area">
+
+                        <div
+                            id="led2"
+                            class="led"
+                        >
+
+                            <span
+                                id="ledText2"
+                                class="led-text"
+                            >
+                                Desligado
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="led-buttons">
+
+                        <button
+                            id="btnLed2On"
+                            class="btn-on"
+                            disabled
+                        >
+                            LIGAR
+                        </button>
+
+                        <button
+                            id="btnLed2Off"
+                            class="btn-off"
+                            disabled
+                        >
+                            DESLIGAR
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- LED 3 -->
+
+                <section class="led-card">
+
+                    <div class="led-title">
+                        LED 3
+                    </div>
+
+                    <div class="led-pin">
+                        Arduino - D13
+                    </div>
+
+                    <div class="led-area">
+
+                        <div
+                            id="led3"
+                            class="led"
+                        >
+
+                            <span
+                                id="ledText3"
+                                class="led-text"
+                            >
+                                Desligado
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="led-buttons">
+
+                        <button
+                            id="btnLed3On"
+                            class="btn-on"
+                            disabled
+                        >
+                            LIGAR
+                        </button>
+
+                        <button
+                            id="btnLed3Off"
+                            class="btn-off"
+                            disabled
+                        >
+                            DESLIGAR
+                        </button>
+
+                    </div>
+
+                </section>
 
             </div>
 
 
-            <!-- =================================================
-                 INFORMAÇÕES
-            ================================================== -->
+            <!-- CONTROLE DE TODOS -->
+
+            <section class="all-control">
+
+                <h2>
+                    Controle geral
+                </h2>
+
+                <p class="control-description">
+                    Controle os três LEDs ao mesmo tempo.
+                </p>
+
+                <div class="all-buttons">
+
+                    <button
+                        id="btnAllOn"
+                        class="btn-on"
+                        disabled
+                    >
+                        LIGAR TODOS OS LEDs
+                    </button>
+
+                    <button
+                        id="btnAllOff"
+                        class="btn-off"
+                        disabled
+                    >
+                        DESLIGAR TODOS OS LEDs
+                    </button>
+
+                </div>
+
+                <div class="message">
+
+                    Última mensagem:
+
+                    <span id="lastMessage">
+                        Aguardando
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- INFORMAÇÕES -->
 
             <div class="information">
-
 
                 <div class="info">
 
@@ -1135,15 +935,14 @@
                 <div class="info">
 
                     <div class="info-title">
-                        Porta
+                        LEDs
                     </div>
 
                     <div class="info-value">
-                        Arduino D13
+                        D11 • D12 • D13
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1154,71 +953,54 @@
 
             </footer>
 
-
         </section>
 
     </main>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
-
-        /* =====================================================
+        /* =========================
            CONFIGURAÇÃO MQTT
-        ====================================================== */
+        ========================= */
 
         const MQTT_HOST =
             "broker.hivemq.com";
 
-
         const MQTT_PORT =
             8884;
-
-
-        /*
-         * Começa vazio.
-         * O usuário digita o tópico.
-         */
 
         let currentTopic = "";
 
 
-        /* =====================================================
+        /* =========================
            CLIENT ID
-        ====================================================== */
+        ========================= */
 
         const clientId =
-
             "arduino_dashboard_" +
-
             Math.random()
                 .toString(16)
                 .substring(2, 10) +
-
             "_" +
-
             Date.now();
 
 
-        /* =====================================================
+        /* =========================
            ELEMENTOS
-        ====================================================== */
+        ========================= */
 
         const status =
             document.getElementById(
                 "status"
             );
 
-
         const statusText =
             document.getElementById(
                 "statusText"
             );
-
 
         const topicInput =
             document.getElementById(
@@ -1226,27 +1008,89 @@
             );
 
 
-        const led =
+        /* LEDs */
+
+        const led1 =
             document.getElementById(
-                "led"
+                "led1"
+            );
+
+        const led2 =
+            document.getElementById(
+                "led2"
+            );
+
+        const led3 =
+            document.getElementById(
+                "led3"
             );
 
 
-        const ledText =
+        const ledText1 =
             document.getElementById(
-                "ledText"
+                "ledText1"
+            );
+
+        const ledText2 =
+            document.getElementById(
+                "ledText2"
+            );
+
+        const ledText3 =
+            document.getElementById(
+                "ledText3"
             );
 
 
-        const btnOn =
+        /* Botões LED 1 */
+
+        const btnLed1On =
             document.getElementById(
-                "btnOn"
+                "btnLed1On"
+            );
+
+        const btnLed1Off =
+            document.getElementById(
+                "btnLed1Off"
             );
 
 
-        const btnOff =
+        /* Botões LED 2 */
+
+        const btnLed2On =
             document.getElementById(
-                "btnOff"
+                "btnLed2On"
+            );
+
+        const btnLed2Off =
+            document.getElementById(
+                "btnLed2Off"
+            );
+
+
+        /* Botões LED 3 */
+
+        const btnLed3On =
+            document.getElementById(
+                "btnLed3On"
+            );
+
+        const btnLed3Off =
+            document.getElementById(
+                "btnLed3Off"
+            );
+
+
+        /* Botões gerais */
+
+        const btnAllOn =
+            document.getElementById(
+                "btnAllOn"
+            );
+
+        const btnAllOff =
+            document.getElementById(
+                "btnAllOff"
             );
 
 
@@ -1256,12 +1100,11 @@
             );
 
 
-        /* =====================================================
-           CLIENTE PAHO MQTT
-        ====================================================== */
+        /* =========================
+           CLIENTE MQTT
+        ========================= */
 
         const client =
-
             new Paho.MQTT.Client(
 
                 MQTT_HOST,
@@ -1275,9 +1118,9 @@
             );
 
 
-        /* =====================================================
+        /* =========================
            STATUS
-        ====================================================== */
+        ========================= */
 
         function setStatus(
             type,
@@ -1286,7 +1129,6 @@
 
             status.className =
                 "status";
-
 
             if (
                 type === "online"
@@ -1298,7 +1140,6 @@
 
             }
 
-
             if (
                 type === "offline"
             ) {
@@ -1309,44 +1150,35 @@
 
             }
 
-
             statusText.textContent =
                 text;
 
         }
 
 
-        /* =====================================================
+        /* =========================
            CONEXÃO PERDIDA
-        ====================================================== */
+        ========================= */
 
         client.onConnectionLost =
-
             function (
                 responseObject
             ) {
 
-
-                btnOn.disabled = true;
-
-                btnOff.disabled = true;
-
+                updateButtons();
 
                 setStatus(
                     "offline",
                     "Sistema Offline"
                 );
 
-
                 if (
                     responseObject.errorCode !== 0
                 ) {
 
                     console.log(
-
                         "Conexão perdida:",
                         responseObject.errorMessage
-
                     );
 
                 }
@@ -1354,67 +1186,188 @@
             };
 
 
-        /* =====================================================
+        /* =========================
            MENSAGEM RECEBIDA
-        ====================================================== */
+        ========================= */
 
         client.onMessageArrived =
-
             function (
                 message
             ) {
 
-
                 const received =
-
                     message
                         .payloadString
                         .trim();
-
 
                 console.log(
                     "Mensagem recebida:",
                     received
                 );
 
-
                 lastMessage.textContent =
                     received;
 
 
                 /*
-                 * RECEBEU 1
+                 * LED 1
+                 *
+                 * A = ligar
+                 * a = desligar
                  */
 
                 if (
-                    received === "1"
+                    received === "A"
                 ) {
 
-                    led.classList.add(
+                    led1.classList.add(
                         "active"
                     );
 
-
-                    ledText.textContent =
+                    ledText1.textContent =
                         "Ligado";
+
+                }
+
+                else if (
+                    received === "a"
+                ) {
+
+                    led1.classList.remove(
+                        "active"
+                    );
+
+                    ledText1.textContent =
+                        "Desligado";
 
                 }
 
 
                 /*
-                 * RECEBEU 0
+                 * LED 2
+                 *
+                 * B = ligar
+                 * b = desligar
                  */
 
                 else if (
-                    received === "0"
+                    received === "B"
                 ) {
 
-                    led.classList.remove(
+                    led2.classList.add(
                         "active"
                     );
 
+                    ledText2.textContent =
+                        "Ligado";
 
-                    ledText.textContent =
+                }
+
+                else if (
+                    received === "b"
+                ) {
+
+                    led2.classList.remove(
+                        "active"
+                    );
+
+                    ledText2.textContent =
+                        "Desligado";
+
+                }
+
+
+                /*
+                 * LED 3
+                 *
+                 * C = ligar
+                 * c = desligar
+                 */
+
+                else if (
+                    received === "C"
+                ) {
+
+                    led3.classList.add(
+                        "active"
+                    );
+
+                    ledText3.textContent =
+                        "Ligado";
+
+                }
+
+                else if (
+                    received === "c"
+                ) {
+
+                    led3.classList.remove(
+                        "active"
+                    );
+
+                    ledText3.textContent =
+                        "Desligado";
+
+                }
+
+
+                /*
+                 * TODOS OS LEDs
+                 *
+                 * X = ligar todos
+                 * x = desligar todos
+                 */
+
+                else if (
+                    received === "X"
+                ) {
+
+                    led1.classList.add(
+                        "active"
+                    );
+
+                    led2.classList.add(
+                        "active"
+                    );
+
+                    led3.classList.add(
+                        "active"
+                    );
+
+                    ledText1.textContent =
+                        "Ligado";
+
+                    ledText2.textContent =
+                        "Ligado";
+
+                    ledText3.textContent =
+                        "Ligado";
+
+                }
+
+                else if (
+                    received === "x"
+                ) {
+
+                    led1.classList.remove(
+                        "active"
+                    );
+
+                    led2.classList.remove(
+                        "active"
+                    );
+
+                    led3.classList.remove(
+                        "active"
+                    );
+
+                    ledText1.textContent =
+                        "Desligado";
+
+                    ledText2.textContent =
+                        "Desligado";
+
+                    ledText3.textContent =
                         "Desligado";
 
                 }
@@ -1422,18 +1375,16 @@
             };
 
 
-        /* =====================================================
-           CONECTAR
-        ====================================================== */
+        /* =========================
+           CONECTAR AO HIVEMQ
+        ========================= */
 
         function connectMQTT() {
-
 
             setStatus(
                 "sync",
                 "Conectando..."
             );
-
 
             client.connect({
 
@@ -1441,34 +1392,19 @@
 
                 timeout: 10,
 
-
                 onSuccess:
                     function () {
-
 
                         console.log(
                             "Conectado ao HiveMQ"
                         );
-
 
                         setStatus(
                             "online",
                             "Sistema Online"
                         );
 
-
-                        /*
-                         * Os botões só ficam disponíveis
-                         * quando existe um tópico.
-                         */
-
                         updateButtons();
-
-
-                        /*
-                         * Se o usuário já digitou
-                         * um tópico, assinar.
-                         */
 
                         if (
                             currentTopic !== ""
@@ -1480,28 +1416,22 @@
 
                     },
 
-
                 onFailure:
                     function (
                         error
                     ) {
-
 
                         console.error(
                             "Erro MQTT:",
                             error
                         );
 
-
                         setStatus(
                             "offline",
                             "Falha na conexão"
                         );
 
-
-                        btnOn.disabled = true;
-
-                        btnOff.disabled = true;
+                        updateButtons();
 
                     }
 
@@ -1510,42 +1440,58 @@
         }
 
 
-        /* =====================================================
+        /* =========================
            ATUALIZAR BOTÕES
-        ====================================================== */
+        ========================= */
 
         function updateButtons() {
-
 
             const connected =
                 client.isConnected();
 
-
             const hasTopic =
                 currentTopic.trim() !== "";
-
 
             const enabled =
                 connected &&
                 hasTopic;
 
 
-            btnOn.disabled =
+            btnLed1On.disabled =
+                !enabled;
+
+            btnLed1Off.disabled =
                 !enabled;
 
 
-            btnOff.disabled =
+            btnLed2On.disabled =
+                !enabled;
+
+            btnLed2Off.disabled =
+                !enabled;
+
+
+            btnLed3On.disabled =
+                !enabled;
+
+            btnLed3Off.disabled =
+                !enabled;
+
+
+            btnAllOn.disabled =
+                !enabled;
+
+            btnAllOff.disabled =
                 !enabled;
 
         }
 
 
-        /* =====================================================
+        /* =========================
            ASSINAR TÓPICO
-        ====================================================== */
+        ========================= */
 
         function subscribeTopic() {
-
 
             if (
                 !client.isConnected()
@@ -1555,7 +1501,6 @@
 
             }
 
-
             if (
                 currentTopic.trim() === ""
             ) {
@@ -1563,7 +1508,6 @@
                 return;
 
             }
-
 
             client.subscribe(
 
@@ -1573,21 +1517,17 @@
 
                     qos: 0,
 
-
                     onSuccess:
                         function () {
 
                             console.log(
-
                                 "Inscrito em:",
                                 currentTopic
-
                             );
 
                             updateButtons();
 
                         },
-
 
                     onFailure:
                         function (
@@ -1595,10 +1535,8 @@
                         ) {
 
                             console.error(
-
                                 "Erro ao assinar tópico:",
                                 error
-
                             );
 
                         }
@@ -1610,14 +1548,13 @@
         }
 
 
-        /* =====================================================
+        /* =========================
            PUBLICAR COMANDO
-        ====================================================== */
+        ========================= */
 
         function publishCommand(
             value
         ) {
-
 
             if (
                 !client.isConnected()
@@ -1626,7 +1563,6 @@
                 return;
 
             }
-
 
             if (
                 currentTopic.trim() === ""
@@ -1644,24 +1580,18 @@
 
 
             const message =
-
                 new Paho.MQTT.Message(
                     String(value)
                 );
 
-
             message.destinationName =
                 currentTopic;
 
-
             message.qos = 0;
-
 
             message.retained = false;
 
-
             client.send(message);
-
 
             console.log(
                 "Comando enviado:",
@@ -1672,70 +1602,124 @@
             /*
              * IMPORTANTE:
              *
-             * O LED NÃO muda aqui.
+             * O indicador visual NÃO muda aqui.
              *
-             * Ele só muda quando a mensagem
-             * for recebida pelo MQTT.
+             * Ele muda somente quando
+             * uma mensagem MQTT for recebida.
              */
 
         }
 
 
-        /* =====================================================
-           BOTÃO LIGAR
-        ====================================================== */
+        /* =========================
+           LED 1
+        ========================= */
 
-        btnOn.addEventListener(
-
+        btnLed1On.addEventListener(
             "click",
-
             function () {
 
-                publishCommand("1");
+                publishCommand("A");
 
             }
-
         );
 
 
-        /* =====================================================
-           BOTÃO DESLIGAR
-        ====================================================== */
-
-        btnOff.addEventListener(
-
+        btnLed1Off.addEventListener(
             "click",
-
             function () {
 
-                publishCommand("0");
+                publishCommand("a");
 
             }
-
         );
 
 
-        /* =====================================================
+        /* =========================
+           LED 2
+        ========================= */
+
+        btnLed2On.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("B");
+
+            }
+        );
+
+
+        btnLed2Off.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("b");
+
+            }
+        );
+
+
+        /* =========================
+           LED 3
+        ========================= */
+
+        btnLed3On.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("C");
+
+            }
+        );
+
+
+        btnLed3Off.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("c");
+
+            }
+        );
+
+
+        /* =========================
+           TODOS OS LEDs
+        ========================= */
+
+        btnAllOn.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("X");
+
+            }
+        );
+
+
+        btnAllOff.addEventListener(
+            "click",
+            function () {
+
+                publishCommand("x");
+
+            }
+        );
+
+
+        /* =========================
            ALTERAR TÓPICO
-        ====================================================== */
+        ========================= */
 
         topicInput.addEventListener(
-
             "change",
-
             function () {
 
-
                 const newTopic =
-
                     topicInput
                         .value
                         .trim();
 
-
-                /*
-                 * Se estiver vazio
-                 */
 
                 if (
                     newTopic === ""
@@ -1749,11 +1733,6 @@
 
                 }
 
-
-                /*
-                 * Se não estiver conectado,
-                 * apenas salva o tópico.
-                 */
 
                 if (
                     !client.isConnected()
@@ -1772,15 +1751,9 @@
                 const oldTopic =
                     currentTopic;
 
-
                 currentTopic =
                     newTopic;
 
-
-                /*
-                 * Se existia um tópico anterior,
-                 * cancelar inscrição.
-                 */
 
                 if (
                     oldTopic !== ""
@@ -1828,18 +1801,15 @@
                 updateButtons();
 
             }
-
         );
 
 
-        /* =====================================================
-           TAMBÉM ATUALIZAR AO DIGITAR
-        ====================================================== */
+        /* =========================
+           ATUALIZAR AO DIGITAR
+        ========================= */
 
         topicInput.addEventListener(
-
             "input",
-
             function () {
 
                 currentTopic =
@@ -1848,19 +1818,16 @@
                 updateButtons();
 
             }
-
         );
 
 
-        /* =====================================================
+        /* =========================
            INICIAR SISTEMA
-        ====================================================== */
+        ========================= */
 
         connectMQTT();
 
-
     </script>
-
 
 </body>
 
